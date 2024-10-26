@@ -1,5 +1,5 @@
-local mp_m_freemode_01 = `mp_m_freemode_01`
-local mp_f_freemode_01 = `mp_f_freemode_01`
+local mp_m_freemode_01 = 'mp_m_freemode_01'
+local mp_f_freemode_01 = 'mp_f_freemode_01'
 
 local SpawnCoords = Config.Spawn[ESX.Math.Random(1,#Config.Spawn)]
 

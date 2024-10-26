@@ -64,7 +64,7 @@ Core.PlayerFunctionOverrides.QSInventory = {
                 local account = self.getAccount(accountName)
                 if account then
                     money = account.round and ESX.Math.Round(money) or money
-                    self.accounts[account.index].money = money + self.accounts[account.index].money
+                    self.accounts[account.index].money =self.accounts[account.index].money + money
                     self.triggerEvent('esx:setAccountMoney', account)
                     TriggerEvent('esx:addAccountMoney', self.source, accountName, money, reason)
                     local accounts = exports['qs-inventory']:GetAccounts()
@@ -82,7 +82,7 @@ Core.PlayerFunctionOverrides.QSInventory = {
                 local account = self.getAccount(accountName)
                 if account then
                     money = account.round and ESX.Math.Round(money) or money
-                    self.accounts[account.index].money = money - self.accounts[account.index].money
+                    self.accounts[account.index].money = self.accounts[account.index].money - money
                     self.triggerEvent('esx:setAccountMoney', account)
                     TriggerEvent('esx:removeAccountMoney', self.source, accountName, money, reason)
                     local accounts = exports['qs-inventory']:GetAccounts()

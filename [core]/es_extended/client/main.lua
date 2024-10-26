@@ -94,7 +94,7 @@ AddEventHandler("esx:playerLoaded", function(xPlayer, _, skin)
 
     -- DisableNPCDrops
     if Config.DisableNPCDrops then
-        local weaponPickups = { `PICKUP_WEAPON_CARBINERIFLE`, `PICKUP_WEAPON_PISTOL`, `PICKUP_WEAPON_PUMPSHOTGUN` }
+        local weaponPickups = { 'PICKUP_WEAPON_CARBINERIFLE', 'PICKUP_WEAPON_PISTOL', 'PICKUP_WEAPON_PUMPSHOTGUN' }
         for i = 1, #weaponPickups do
             ToggleUsePickupsForPlayer(playerId, weaponPickups[i], false)
         end

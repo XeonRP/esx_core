@@ -2,22 +2,22 @@ SetMapName("San Andreas")
 SetGameType("ESX Legacy")
 
 local oneSyncState = GetConvar("onesync", "off")
-local newPlayer = "INSERT INTO `users` SET `accounts` = ?, `identifier` = ?, `group` = ?"
-local loadPlayer = "SELECT `accounts`, `job`, `job_grade`, `group`, `position`, `inventory`, `skin`, `loadout`, `metadata`"
+local newPlayer = "INSERT INTO 'users' SET 'accounts' = ?, 'identifier' = ?, 'group' = ?"
+local loadPlayer = "SELECT 'accounts', 'job', 'job_grade', 'group', 'position', 'inventory', 'skin', 'loadout', 'metadata'"
 
 if Config.Multichar then
-    newPlayer = newPlayer .. ", `firstname` = ?, `lastname` = ?, `dateofbirth` = ?, `sex` = ?, `height` = ?"
+    newPlayer = newPlayer .. ", 'firstname' = ?, 'lastname' = ?, 'dateofbirth' = ?, 'sex' = ?, 'height' = ?"
 end
 
 if Config.StartingInventoryItems then
-    newPlayer = newPlayer .. ", `inventory` = ?"
+    newPlayer = newPlayer .. ", 'inventory' = ?"
 end
 
 if Config.Multichar or Config.Identity then
-    loadPlayer = loadPlayer .. ", `firstname`, `lastname`, `dateofbirth`, `sex`, `height`"
+    loadPlayer = loadPlayer .. ", 'firstname', 'lastname', 'dateofbirth', 'sex', 'height'"
 end
 
-loadPlayer = loadPlayer .. " FROM `users` WHERE identifier = ?"
+loadPlayer = loadPlayer .. " FROM 'users' WHERE identifier = ?"
 
 if Config.Multichar then
     AddEventHandler("esx:onPlayerJoined", function(src, char, data)
@@ -187,7 +187,7 @@ function loadESXPlayer(identifier, playerId, isNew)
 
         for name, item in pairs(ESX.Items) do
             local count = inventory[name] or 0
-            userData.weight += (count * item.weight)
+            userData.weight = userData.weight + (count * item.weight)
 
             userData.inventory[#userData.inventory + 1] = {
                 name = name,
@@ -644,14 +644,14 @@ end)
 
 ESX.RegisterServerCallback("esx:spawnVehicle", function(source, cb, vehData)
     local ped = GetPlayerPed(source)
-    ESX.OneSync.SpawnVehicle(vehData.model or `ADDER`, vehData.coords or GetEntityCoords(ped), vehData.coords.w or 0.0, vehData.props or {}, function(id)
+    ESX.OneSync.SpawnVehicle(vehData.model or 'ADDER', vehData.coords or GetEntityCoords(ped), vehData.coords.w or 0.0, vehData.props or {}, function(id)
         if vehData.warp then
             local vehicle = NetworkGetEntityFromNetworkId(id)
             local timeout = 0
             while GetVehiclePedIsIn(ped) ~= vehicle and timeout <= 15 do
                 Wait(0)
                 TaskWarpPedIntoVehicle(ped, vehicle, -1)
-                timeout += 1
+                timeout = timeout + 1
             end
         end
         cb(id)
