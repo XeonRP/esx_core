@@ -368,34 +368,9 @@ function ESX.GetVehicleType(model, player, cb)
 end
 
 function ESX.DiscordLog(name, title, color, message)
-    local webHook = Config.DiscordLogs.Webhooks[name] or Config.DiscordLogs.Webhooks.default
-    local embedData = {
-        {
-            ["title"] = title,
-            ["color"] = Config.DiscordLogs.Colors[color] or Config.DiscordLogs.Colors.default,
-            ["footer"] = {
-                ["text"] = "| ESX Logs | " .. os.date(),
-                ["icon_url"] = "https://cdn.discordapp.com/attachments/944789399852417096/1020099828266586193/blanc-800x800.png",
-            },
-            ["description"] = message,
-            ["author"] = {
-                ["name"] = "ESX Framework",
-                ["icon_url"] = "https://cdn.discordapp.com/emojis/939245183621558362.webp?size=128&quality=lossless",
-            },
-        },
-    }
-    PerformHttpRequest(
-        webHook,
-        nil,
-        "POST",
-        json.encode({
-            username = "Logs",
-            embeds = embedData,
-        }),
-        {
-            ["Content-Type"] = "application/json",
-        }
-    )
+    
+    TriggerEvent("xeonrp-core:log", "info", title, message)
+
 end
 
 function ESX.DiscordLogFields(name, title, color, fields)

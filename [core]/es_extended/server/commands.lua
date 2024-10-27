@@ -4,13 +4,7 @@ ESX.RegisterCommand(
     function(xPlayer, args)
         xPlayer.setCoords({ x = args.x, y = args.y, z = args.z })
         if Config.AdminLogging then
-            ESX.DiscordLogFields("UserActions", "Set Coordinates /setcoords Triggered!", "pink", {
-                { name = "Player", value = xPlayer and xPlayer.name or "Server Console", inline = true },
-                { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
-                { name = "X Coord", value = args.x, inline = true },
-                { name = "Y Coord", value = args.y, inline = true },
-                { name = "Z Coord", value = args.z, inline = true },
-            })
+            TriggerEvent("xeonrp-core:log", "warn", "/setcoords wurde benutzt.", "X: "..args.x.." Y: "..args.y.." Z: "..args.z, xPlayer.source)
         end
     end,
     false,
@@ -42,6 +36,9 @@ ESX.RegisterCommand(
                 { name = "Job", value = args.job, inline = true },
                 { name = "Grade", value = args.grade, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/setjob wurde benutzt.", "Job: "..args.job.." Stufe: "..args.grade, xPlayer.source, args.playerId.source)
+
         end
     end,
     true,
@@ -93,6 +90,9 @@ ESX.RegisterCommand(
                 { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
                 { name = "Vehicle", value = args.car, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/car wurde benutzt.", "Fahrzeug: "..args.car, xPlayer.source)
+
         end
 
         ESX.OneSync.SpawnVehicle(args.car, playerCoords, playerHeading, upgrades, function(networkId)
@@ -142,6 +142,9 @@ ESX.RegisterCommand(
                 { name = "Player", value = xPlayer and xPlayer.name or "Server Console", inline = true },
                 { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/dv wurde benutzt.", "Radius: "..args.radius, xPlayer.source)
+
         end
     end,
     false,
@@ -176,6 +179,9 @@ ESX.RegisterCommand(
                 { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
                 { name = "Target", value = xTarget.name, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/fix wurde benutzt.", "Ziel: "..xTarget.name, xPlayer.source, xTarget.source)
+
         end
     end,
     true,
@@ -204,6 +210,9 @@ ESX.RegisterCommand(
                 { name = "Account", value = args.account, inline = true },
                 { name = "Amount", value = args.amount, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/setaccountmoney wurde benutzt.", "Account: "..args.account.." Betrag: "..args.amount, xPlayer.source, args.playerId.source)
+
         end
     end,
     true,
@@ -234,6 +243,9 @@ ESX.RegisterCommand(
                 { name = "Account", value = args.account, inline = true },
                 { name = "Amount", value = args.amount, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/giveaccountmoney wurde benutzt.", "Account: "..args.account.." Betrag: "..args.amount, xPlayer.source, args.playerId.source)
+
         end
     end,
     true,
@@ -264,6 +276,9 @@ ESX.RegisterCommand(
                 { name = "Account", value = args.account, inline = true },
                 { name = "Amount", value = args.amount, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/removeaccountmoney wurde benutzt.", "Account: "..args.account.." Betrag: "..args.amount, xPlayer.source, args.playerId.source)
+
         end
     end,
     true,
@@ -292,6 +307,9 @@ if not Config.OxInventory and not Config.QSInventory then
                     { name = "Item", value = args.item, inline = true },
                     { name = "Quantity", value = args.count, inline = true },
                 })
+
+                TriggerEvent("xeonrp-core:log", "warn", "/giveitem wurde benutzt.", "Item: "..args.item.." Menge: "..args.count, xPlayer.source, args.playerId.source)
+
             end
         end,
         true,
@@ -322,6 +340,9 @@ if not Config.OxInventory and not Config.QSInventory then
                     { name = "Weapon", value = args.weapon, inline = true },
                     { name = "Ammo", value = args.ammo, inline = true },
                 })
+
+                TriggerEvent("xeonrp-core:log", "warn", "/giveweapon wurde benuzt.", "Waffe: "..args.weapon.." Menge: "..args.ammo, xPlayer.source, args.playerId.source)
+
             end
         end,
         true,
@@ -352,6 +373,9 @@ if not Config.OxInventory and not Config.QSInventory then
                     { name = "Weapon", value = args.weapon, inline = true },
                     { name = "Ammo", value = args.ammo, inline = true },
                 })
+
+                TriggerEvent("xeonrp-core:log", "warn", "/giveammo wurde benutzt.", "Waffe: "..args.weapon.." Menge: "..args.ammo, xPlayer.source, args.playerId.source)
+
             end
         end,
         true,
@@ -386,6 +410,9 @@ if not Config.OxInventory and not Config.QSInventory then
                                 { name = "Weapon", value = args.weaponName, inline = true },
                                 { name = "Component", value = args.componentName, inline = true },
                             })
+
+                            TriggerEvent("xeonrp-core:log", "warn", "/giveweaponcomponent wurde benutzt.", "Waffe: "..args.weaponName.." Komponente: "..args.componentName, xPlayer.source, args.playerId.source)
+
                         end
                     end
                 else
@@ -419,6 +446,9 @@ ESX.RegisterCommand({ "clearall", "clsall" }, "admin", function(xPlayer)
             { name = "Player", value = xPlayer and xPlayer.name or "Server Console", inline = true },
             { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
         })
+
+        TriggerEvent("xeonrp-core:log", "warn", "/clearall wurde benutzt.", "", xPlayer.source)
+
     end
 end, true, { help = TranslateCap("command_clearall") })
 
@@ -469,6 +499,9 @@ if not Config.OxInventory and not Config.QSInventory then
                     { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
                     { name = "Target", value = args.playerId.name, inline = true },
                 })
+
+                TriggerEvent("xeonrp-core:log", "warn", "/clearloadout wurde benutzt.", "", xPlayer.source, args.playerId.source)
+
             end
         end,
         true,
@@ -501,6 +534,9 @@ ESX.RegisterCommand(
                 { name = "Target", value = args.playerId.name, inline = true },
                 { name = "Group", value = args.group, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/setgroup wurde benutzt.", "Gruppe: "..args.group, xPlayer.source, args.playerId.source)
+
         end
     end,
     true,
@@ -563,6 +599,9 @@ ESX.RegisterCommand("tpm", "admin", function(xPlayer)
             { name = "Player", value = xPlayer and xPlayer.name or "Server Console", inline = true },
             { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
         })
+
+        TriggerEvent("xeonrp-core:log", "warn", "/tpm wurde benutzt.", "", xPlayer.source)
+
     end
 end, false)
 
@@ -579,6 +618,9 @@ ESX.RegisterCommand(
                 { name = "Target", value = args.playerId.name, inline = true },
                 { name = "Target Coords", value = targetCoords, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/goto wurde benutzt.", "Ziel: "..args.playerId.name, xPlayer.source, args.playerId.source)
+
         end
     end,
     false,
@@ -605,6 +647,9 @@ ESX.RegisterCommand(
                 { name = "Target", value = args.playerId.name, inline = true },
                 { name = "Target Coords", value = targetCoords, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/bring wurde benutzt.", "Ziel: "..args.playerId.name, xPlayer.source, args.playerId.source)
+
         end
     end,
     false,
@@ -628,6 +673,9 @@ ESX.RegisterCommand(
                 { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
                 { name = "Target", value = args.playerId.name, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/kill wurde benutzt.", "Ziel: "..args.playerId.name, xPlayer.source, args.playerId.source)
+
         end
     end,
     true,
@@ -651,6 +699,9 @@ ESX.RegisterCommand(
                 { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
                 { name = "Target", value = args.playerId.name, inline = true },
             })
+
+            TriggerEvent("xeonrp-core:log", "warn", "/freeze wurde benutzt.", "Ziel: "..args.playerId.name, xPlayer.source, args.playerId.source)
+
         end
     end,
     true,
@@ -674,6 +725,8 @@ ESX.RegisterCommand(
                 { name = "ID", value = xPlayer and xPlayer.source or "Unknown ID", inline = true },
                 { name = "Target", value = args.playerId.name, inline = true },
             })
+            TriggerEvent("xeonrp-core:log", "warn", "/unfreeze wurde benutzt.", "Ziel: "..args.playerId.name, xPlayer.source, args.playerId.source)
+
         end
     end,
     true,

@@ -17,6 +17,9 @@ function StartPayCheck()
                                 { name = "ID", value = xPlayer.source, inline = true },
                                 { name = "Amount", value = salary, inline = true },
                             })
+
+                            TriggerEvent("xeonrp-core:log", "info", "Paycheck wurde ausgezahlt.", salary.."$", xPlayer.source)
+
                         end
                     elseif Config.EnableSocietyPayouts then -- possibly a society
                         TriggerEvent("esx_society:getSociety", xPlayer.job.name, function(society)
@@ -31,6 +34,9 @@ function StartPayCheck()
                                                 { name = "ID", value = xPlayer.source, inline = true },
                                                 { name = "Amount", value = salary, inline = true },
                                             })
+
+                                            TriggerEvent("xeonrp-core:log", "info", "Paycheck wurde ausgezahlt.", salary.."$", xPlayer.source)
+
                                         end
 
                                         TriggerClientEvent("esx:showAdvancedNotification", player, TranslateCap("bank"), TranslateCap("received_paycheck"), TranslateCap("received_salary", salary), "CHAR_BANK_MAZE", 9)
@@ -46,6 +52,9 @@ function StartPayCheck()
                                         { name = "ID", value = xPlayer.source, inline = true },
                                         { name = "Amount", value = salary, inline = true },
                                     })
+
+                                    TriggerEvent("xeonrp-core:log", "info", "Paycheck wurde ausgezahlt.", salary.."$", xPlayer.source)
+
                                 end
                                 TriggerClientEvent("esx:showAdvancedNotification", player, TranslateCap("bank"), TranslateCap("received_paycheck"), TranslateCap("received_salary", salary), "CHAR_BANK_MAZE", 9)
                             end
@@ -58,6 +67,9 @@ function StartPayCheck()
                                 { name = "ID", value = xPlayer.source, inline = true },
                                 { name = "Amount", value = salary, inline = true },
                             })
+
+                            TriggerEvent("xeonrp-core:log", "info", "Paycheck wurde ausgezahlt.", salary.."$", xPlayer.source)
+
                         end
                         TriggerClientEvent("esx:showAdvancedNotification", player, TranslateCap("bank"), TranslateCap("received_paycheck"), TranslateCap("received_salary", salary), "CHAR_BANK_MAZE", 9)
                     end
