@@ -1,9 +1,5 @@
 Config = {}
-
-local txAdminLocale = GetConvar("txAdmin-locale", "en")
-local esxLocale = GetConvar("esx:locale", "invalid")
-
-Config.Locale = (esxLocale ~= "invalid") and esxLocale or (txAdminLocale ~= "custom" and txAdminLocale) or "en"
+Config.Locale = GetConvar("esx:locale", "de")
 
 Config.OxInventory = GetResourceState("ox_inventory") ~= 'missing'
 
@@ -37,6 +33,7 @@ Config.DefaultSpawns = { -- If you want to have more spawn positions and select 
 Config.AdminGroups = {
     ["owner"] = true,
     ["admin"] = true,
+    ['pl'] = true,
 }
 
 Config.EnablePaycheck = true -- enable paycheck
@@ -49,7 +46,7 @@ Config.EnableDefaultInventory = false -- Display the default Inventory ( F2 )
 Config.EnableWantedLevel = false -- Use Normal GTA wanted Level?
 Config.EnablePVP = true -- Allow Player to player combat
 
-Config.Multichar = GetResourceState("esx_multicharacter") ~= "missing"
+Config.Multichar = false
 Config.Identity = true -- Select a character identity data before they have loaded in (this happens by default with multichar)
 Config.DistanceGive = 4.0 -- Max distance when giving items, weapons etc.
 
