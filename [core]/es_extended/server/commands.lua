@@ -37,7 +37,7 @@ ESX.RegisterCommand(
                 { name = "Grade", value = args.grade, inline = true },
             })
 
-            TriggerEvent("xeonrp-core:log", "warn", "/setjob wurde benutzt.", "Job: "..args.job.." Stufe: "..args.grade, xPlayer.source, args.playerId.source)
+            TriggerEvent("xeonrp-core:log", "warn", "/setjob wurde benutzt.", "Job: "..args.job.." Stufe: "..args.grade, (xPlayer.source or nil), args.playerId.source)
 
         end
     end,
