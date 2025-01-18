@@ -482,6 +482,11 @@ function ESX.SetPlayerFunctionOverride(index)
     Config.PlayerFunctionOverride = index
 end
 
+function ESX.SavePlayer(src)
+    local xPlayer = ESX.GetPlayerFromId(src)
+    Core.SavePlayer(xPlayer)
+end
+
 function ESX.GetItemLabel(item)
     if Config.QSInventory then
         return exports['qs-inventory']:GetItemLabel(item)
