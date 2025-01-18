@@ -263,6 +263,7 @@ AddEventHandler("esx:restoreLoadout", function()
             local weaponName = v.name
             local weaponHash = joaat(weaponName)
 
+            TriggerEvent('weapontrigger')
             GiveWeaponToPed(ESX.PlayerData.ped, weaponHash, 0, false, false)
             SetPedWeaponTintIndex(ESX.PlayerData.ped, weaponHash, v.tintIndex)
 
