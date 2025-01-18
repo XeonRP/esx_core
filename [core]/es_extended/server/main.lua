@@ -395,6 +395,8 @@ if not Config.OxInventory and not Config.QSInventory then
                     sourceXPlayer.removeInventoryItem(itemName, itemCount)
                     targetXPlayer.addInventoryItem(itemName, itemCount)
 
+                    TriggerEvent("xeonrp-core:log", "info", "Item gegeben", "Item: "..sourceItem.label.." - "..itemName.." Anzahl: "..itemCount.."x", sourceXPlayer.source, targetXPlayer.source)
+
                     sourceXPlayer.showNotification(TranslateCap("gave_item", itemCount, sourceItem.label, targetXPlayer.name))
                     targetXPlayer.showNotification(TranslateCap("received_item", itemCount, sourceItem.label, sourceXPlayer.name))
                 else
@@ -407,6 +409,8 @@ if not Config.OxInventory and not Config.QSInventory then
             if itemCount > 0 and sourceXPlayer.getAccount(itemName).money >= itemCount then
                 sourceXPlayer.removeAccountMoney(itemName, itemCount, "Gave to " .. targetXPlayer.name)
                 targetXPlayer.addAccountMoney(itemName, itemCount, "Received from " .. sourceXPlayer.name)
+
+                TriggerEvent("xeonrp-core:log", "info", "Geld gegeben", "Konto: "..Config.Accounts[itemName].label.." Betrag: "..itemCount, sourceXPlayer.source, targetXPlayer.source)
 
                 sourceXPlayer.showNotification(TranslateCap("gave_account_money", ESX.Math.GroupDigits(itemCount), Config.Accounts[itemName].label, targetXPlayer.name))
                 targetXPlayer.showNotification(TranslateCap("received_account_money", ESX.Math.GroupDigits(itemCount), Config.Accounts[itemName].label, sourceXPlayer.name))
@@ -437,9 +441,15 @@ if not Config.OxInventory and not Config.QSInventory then
                         local ammoLabel = weaponObject.ammo.label
                         sourceXPlayer.showNotification(TranslateCap("gave_weapon_withammo", weaponLabel, itemCount, ammoLabel, targetXPlayer.name))
                         targetXPlayer.showNotification(TranslateCap("received_weapon_withammo", weaponLabel, itemCount, ammoLabel, sourceXPlayer.name))
+
+                        TriggerEvent("xeonrp-core:log", "info", "Waffe gegeben", "Waffe: "..weaponLabel.." Munition: "..itemCount, sourceXPlayer.source, targetXPlayer.source)
+
                     else
                         sourceXPlayer.showNotification(TranslateCap("gave_weapon", weaponLabel, targetXPlayer.name))
                         targetXPlayer.showNotification(TranslateCap("received_weapon", weaponLabel, sourceXPlayer.name))
+
+                        TriggerEvent("xeonrp-core:log", "info", "Waffe gegeben", "Waffe: "..weaponLabel, sourceXPlayer.source, targetXPlayer.source)
+
                     end
                 else
                     sourceXPlayer.showNotification(TranslateCap("gave_weapon_hasalready", targetXPlayer.name, weaponLabel))
@@ -460,6 +470,8 @@ if not Config.OxInventory and not Config.QSInventory then
                             sourceXPlayer.removeWeaponAmmo(itemName, itemCount)
                             targetXPlayer.addWeaponAmmo(itemName, itemCount)
 
+                            TriggerEvent("xeonrp-core:log", "info", "Munition gegeben", "Waffe: "..weapon.label.." Munition: "..itemCount, sourceXPlayer.source, targetXPlayer.source)
+
                             sourceXPlayer.showNotification(TranslateCap("gave_weapon_ammo", itemCount, ammoLabel, weapon.label, targetXPlayer.name))
                             targetXPlayer.showNotification(TranslateCap("received_weapon_ammo", itemCount, ammoLabel, weapon.label, sourceXPlayer.name))
                         end
@@ -467,6 +479,9 @@ if not Config.OxInventory and not Config.QSInventory then
                 else
                     sourceXPlayer.showNotification(TranslateCap("gave_weapon_noweapon", targetXPlayer.name))
                     targetXPlayer.showNotification(TranslateCap("received_weapon_noweapon", sourceXPlayer.name, weapon.label))
+
+                   -- TriggerEvent("xeonrp-core:log", "info", "Waffe gegeben", "Waffe: "..weapon.label, sourceXPlayer.source, targetXPlayer.source)
+
                 end
             end
         end
@@ -487,9 +502,10 @@ if not Config.OxInventory and not Config.QSInventory then
                     xPlayer.showNotification(TranslateCap("imp_invalid_quantity"))
                 else
                     xPlayer.removeInventoryItem(itemName, itemCount)
-                    local pickupLabel = ("%s [%s]"):format(xItem.label, itemCount)
-                    ESX.CreatePickup("item_standard", itemName, itemCount, pickupLabel, playerId)
                     xPlayer.showNotification(TranslateCap("threw_standard", itemCount, xItem.label))
+
+                    TriggerEvent("xeonrp-core:log", "info", "Item weggeworfen", "Item: "..xItem.label.." Anzahl: "..itemCount, xPlayer.source)
+
                 end
             end
         elseif itemType == "item_account" then
@@ -502,9 +518,10 @@ if not Config.OxInventory and not Config.QSInventory then
                     xPlayer.showNotification(TranslateCap("imp_invalid_amount"))
                 else
                     xPlayer.removeAccountMoney(itemName, itemCount, "Threw away")
-                    local pickupLabel = ("%s [%s]"):format(account.label, TranslateCap("locale_currency", ESX.Math.GroupDigits(itemCount)))
-                    ESX.CreatePickup("item_account", itemName, itemCount, pickupLabel, playerId)
                     xPlayer.showNotification(TranslateCap("threw_account", ESX.Math.GroupDigits(itemCount), string.lower(account.label)))
+
+                    TriggerEvent("xeonrp-core:log", "info", "Geld weggeworfen", "Konto: "..account.label.." Betrag: "..itemCount, xPlayer.source)
+
                 end
             end
         elseif itemType == "item_weapon" then
@@ -527,7 +544,8 @@ if not Config.OxInventory and not Config.QSInventory then
                     xPlayer.showNotification(TranslateCap("threw_weapon", weapon.label))
                 end
 
-                ESX.CreatePickup("item_weapon", itemName, weapon.ammo, weaponPickupLabel, playerId, components, weapon.tintIndex)
+                TriggerEvent("xeonrp-core:log", "info", "Waffe weggeworfen", "Waffe: "..weapon.label, xPlayer.source)
+
             end
         end
     end)
