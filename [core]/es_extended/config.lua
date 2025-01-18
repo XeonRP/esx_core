@@ -18,12 +18,19 @@ Config.Accounts = {
     },
 }
 
-Config.StartingAccountMoney = { bank = 50000 }
+Config.StartingAccountMoney = { bank = 15000 }
 
 Config.StartingInventoryItems = false -- table/false
 
 Config.DefaultSpawns = { -- If you want to have more spawn positions and select them randomly uncomment commented code or add more locations
-    { x = 222.2027, y = -864.0162, z = 30.2922, heading = 1.0 },
+    { x = -1140.4088, y = -2806.1274, z = 27.6959, heading = 246.6142 },
+    { x = -1138.8528, y = -2790.1187, z = 27.6959, heading = 195.5905 },
+    { x = -1130.8748, y = -2782.6814, z = 27.6959, heading = 147.4016 },
+    { x = -1125.6791, y = -2789.8813, z = 27.6959, heading = 51.0236 },
+    { x = -1120.1143, y = -2800.2988, z = 27.6959, heading = 56.6929 },
+    --{ x = -1035.4823, y = -2727.2385, z = 13.7566, heading = 330.8493 },
+    --{ x = -1292.4484, y = -1399.4189, z = 4.5821, heading = 299.5796 },
+    --{ x = 282.9649, y = -2516.4949, z = 5.7412, heading = 259.4498 },
     --{x = 224.9865, y = -865.0871, z = 30.2922, heading = 1.0},
     --{x = 227.8436, y = -866.0400, z = 30.2922, heading = 1.0},
     --{x = 230.6051, y = -867.1450, z = 30.2922, heading = 1.0},
@@ -39,8 +46,8 @@ Config.AdminGroups = {
 Config.EnablePaycheck = true -- enable paycheck
 Config.LogPaycheck = false -- Logs paychecks to a nominated Discord channel via webhook (default is false)
 Config.EnableSocietyPayouts = false -- pay from the society account that the player is employed at? Requirement: esx_society
-Config.MaxWeight = 24 -- the max inventory weight without a backpack
-Config.PaycheckInterval = 7 * 60000 -- how often to receive paychecks in milliseconds
+Config.MaxWeight = 500 -- the max inventory weight without a backpack
+Config.PaycheckInterval = 15 * 60000 -- how often to receive paychecks in milliseconds
 Config.EnableDebug = false -- Use Debug options?
 Config.EnableDefaultInventory = false -- Display the default Inventory ( F2 )
 Config.EnableWantedLevel = false -- Use Normal GTA wanted Level?
@@ -50,15 +57,15 @@ Config.Multichar = false
 Config.Identity = true -- Select a character identity data before they have loaded in (this happens by default with multichar)
 Config.DistanceGive = 4.0 -- Max distance when giving items, weapons etc.
 
-Config.AdminLogging = false -- Logs the usage of certain commands by those with group.admin ace permissions (default is false)
+Config.AdminLogging = true -- Logs the usage of certain commands by those with group.admin ace permissions (default is false)
 
 Config.DisableHealthRegeneration = false -- Player will no longer regenerate health
 Config.DisableVehicleRewards = false -- Disables Player Receiving weapons from vehicles
-Config.DisableNPCDrops = false -- stops NPCs from dropping weapons on death
-Config.DisableDispatchServices = false -- Disable Dispatch services
-Config.DisableScenarios = false -- Disable Scenarios
+Config.DisableNPCDrops = true -- stops NPCs from dropping weapons on death
+Config.DisableDispatchServices = true -- Disable Dispatch services
+Config.DisableScenarios = true -- Disable Scenarios
 Config.DisableWeaponWheel = false -- Disables default weapon wheel
-Config.DisableAimAssist = false -- disables AIM assist (mainly on controllers)
+Config.DisableAimAssist = true -- disables AIM assist (mainly on controllers)
 Config.DisableVehicleSeatShuff = false -- Disables vehicle seat shuff
 Config.DisableDisplayAmmo = false -- Disable ammunition display
 Config.RemoveHudComponents = {
@@ -87,7 +94,7 @@ Config.RemoveHudComponents = {
 }
 
 Config.SpawnVehMaxUpgrades = true -- admin vehicles spawn with max vehicle settings
-Config.CustomAIPlates = "........" -- Custom plates for AI vehicles
+Config.CustomAIPlates = "1AAA111" -- Custom plates for AI vehicles
 -- Pattern string format
 --1 will lead to a random number from 0-9.
 --A will lead to a random letter from A-Z.
