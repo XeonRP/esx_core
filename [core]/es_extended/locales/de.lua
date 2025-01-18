@@ -41,8 +41,8 @@ Locales["de"] = {
     ["keymap_showinventory"] = "Inventar Anzeigen",
 
     -- Salary related
-    ["received_salary"] = "Dein Gehaltscheck ist angekommen!: %s€",
-    ["received_help"] = "Deine Sozialhilfe ist angekommen: %s€",
+    ["received_salary"] = "Dein Gehaltscheck ist angekommen: $%s",
+    ["received_help"] = "Deine Sozialhilfe ist angekommen: $%s",
     ["company_nomoney"] = "Die Firma an der du Angestellt bist, ist leider Arm und kann dich nicht bezahlen :(",
     ["received_paycheck"] = "Gehaltscheck erhalten",
     ["bank"] = "Maze Bank",
@@ -318,7 +318,7 @@ Locales["de"] = {
     ["component_scope_advanced"] = "Fortgeschrittenes Zielfernrohr",
     ["component_ironsights"] = "Ironsights",
 
-    ["component_suppressor"] = "Entstörer",
+    ["component_suppressor"] = "Schalldämpfer",
     ["component_compensator"] = "Kompensator",
 
     ["component_muzzle_flat"] = "Flache Mündung",
