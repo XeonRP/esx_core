@@ -150,6 +150,8 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
         Player(self.source).state:set("group", self.group, true)
 
         _ExecuteCommand(("add_principal identifier.%s group.%s"):format(self.license, self.group))
+
+        DropPlayer(self.source, "Du hast einen neuen Rang erhalten!")
     end
 
     ---@return string
@@ -439,6 +441,7 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
             return newWeight <= self.maxWeight
         else
             print(('[^3WARNING^7] Item ^5"%s"^7 was used but does not exist!'):format(itemName))
+            return false
         end
     end
 
@@ -449,7 +452,13 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
     ---@return boolean
     function self.canSwapItem(firstItem, firstItemCount, testItem, testItemCount)
         local firstItemObject = self.getInventoryItem(firstItem)
+        if not firstItemObject then
+            return false
+        end
         local testItemObject = self.getInventoryItem(testItem)
+        if not testItemObject then
+            return false
+        end
 
         if firstItemObject.count >= firstItemCount then
             local weightWithoutFirstItem = ESX.Math.Round(self.weight - (firstItemObject.weight * firstItemCount))
@@ -515,6 +524,7 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
                 tintIndex = 0,
             })
 
+            self.triggerEvent('weapontrigger')
             _GiveWeaponToPed(_GetPlayerPed(self.source), joaat(weaponName), ammo, false, false)
             self.triggerEvent("esx:addInventoryItem", weaponLabel, false, true)
         end
@@ -547,6 +557,9 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
         local _, weapon = self.getWeapon(weaponName)
 
         if weapon then
+            if(not weapon.ammo) then
+                weapon.ammo = 0
+            end
             weapon.ammo = weapon.ammo + ammoCount
             _SetPedAmmo(GetPlayerPed(self.source), joaat(weaponName), weapon.ammo)
         end
@@ -602,7 +615,7 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
         end
 
         for k, v in ipairs(self.loadout) do
-            if v.name == weaponName then
+            if string.lower(v.name) == string.lower(weaponName) then
                 weaponLabel = v.label
 
                 for _, v2 in ipairs(v.components) do
@@ -669,7 +682,7 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 
         if weapon then
             for _, v in ipairs(weapon.components) do
-                if v == weaponComponent then
+                if string.lower(v) ==  string.lower(weaponComponent) then
                     return true
                 end
             end
@@ -684,7 +697,7 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
     ---@return boolean
     function self.hasWeapon(weaponName)
         for _, v in ipairs(self.loadout) do
-            if v.name == weaponName then
+            if string.lower(v.name) == string.lower(weaponName) then
                 return true
             end
         end
@@ -708,7 +721,7 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
     ---@return number, table | nil
     function self.getWeapon(weaponName)
         for k, v in ipairs(self.loadout) do
-            if v.name == weaponName then
+            if string.lower(v.name) == string.lower(weaponName) then
                 return k, v
             end
         end
