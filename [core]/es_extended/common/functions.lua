@@ -65,7 +65,7 @@ function ESX.GetWeaponComponent(weaponName, weaponComponent)
     local weapon = Config.Weapons[weaponsByName[weaponName]]
 
     for _, component in ipairs(weapon.components) do
-        if component.name == weaponComponent then
+        if string.upper(component.name) == string.upper(weaponComponent) then
             return component
         end
     end
